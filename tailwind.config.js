@@ -12,8 +12,26 @@ module.exports = {
     extend: {
       margin: {},
       padding: {},
-      fontSize: {},
-      lineHeight: {},
+      gap: {
+        7.5: '1.875rem',
+      },
+      borderRadius: {
+        100: '100px',
+      },
+      fontSize: {
+        '3.5xl': '2rem',
+        '4.5xl': '2.5rem',
+        15: '3.75rem',
+      },
+      lineHeight: {
+        7.5: '1.875rem',
+        12: '3rem',
+        15: '3.75rem',
+        title: '87px',
+      },
+      height: {
+        7.5: '1.875rem',
+      },
       colors: {
         main: {
           default: '#FFC61A',
@@ -60,6 +78,8 @@ module.exports = {
       addComponents({
         '.container': {
           maxWidth: '100%',
+          marginLeft: 'auto',
+          marginRight: 'auto',
           '@screen sm': {
             maxWidth: '540px',
           },
