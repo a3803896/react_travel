@@ -41,6 +41,10 @@ $smallphone: 576px;
     'Helvetica Neue', sans-serif;
 }
 
+:root {
+  --animate-duration: 0.3s;
+}
+
 body {
   // iOS < 11.2
   padding-left: constant(safe-area-inset-left);

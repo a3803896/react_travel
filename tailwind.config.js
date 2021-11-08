@@ -16,8 +16,16 @@ module.exports = {
       borderRadius: {},
       fontSize: {},
       lineHeight: {},
+      width: {
+        69: '17.25rem',
+      },
       height: {},
-      colors: {},
+      colors: {
+        second: {
+          100: 'rgba(100, 100, 100, 1)',
+          229: 'rgba(229, 229, 229, 1)',
+        },
+      },
     },
   },
   variants: {

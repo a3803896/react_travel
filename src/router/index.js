@@ -1,6 +1,8 @@
 import Home from '@/pages/Home';
 import Search from '@/pages/Search';
-import Info from '@/pages/Info';
+import ScenicSpot from '@/pages/ScenicSpot';
+import Restaurant from '@/pages/Restaurant';
+import Activity from '@/pages/Activity';
 const routes = [
   {
     path: '/',
@@ -13,9 +15,19 @@ const routes = [
     component: Search,
   },
   {
-    path: '/info',
+    path: '/scenic',
     exact: false,
-    component: Info,
+    component: ScenicSpot,
+  },
+  {
+    path: '/restaurant',
+    exact: false,
+    component: Restaurant,
+  },
+  {
+    path: '/activity',
+    exact: false,
+    component: Activity,
   },
 ];
 
