@@ -1,11 +1,11 @@
 import React from 'react';
-// import axios from 'axios';
-// import getAuthorizationHeader from './plugins/getAuthorizationHeader';
 
 export default function Home() {
   return <div>Home</div>;
 }
 
+// import axios from 'axios';
+// import getAuthorizationHeader from './plugins/getAuthorizationHeader';
 // // 取資料
 // function getData() {
 //   axios
