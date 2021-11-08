@@ -11,20 +11,31 @@ module.exports = {
     },
     extend: {
       margin: {},
-      padding: {},
+      padding: {
+        1.5: '0.375rem',
+      },
       gap: {},
-      borderRadius: {},
-      fontSize: {},
+      borderRadius: {
+        7.5: '30px',
+      },
+      fontSize: {
+        '2.5xl': '1.75rem',
+      },
       lineHeight: {},
       width: {
         69: '17.25rem',
       },
       height: {},
       colors: {
+        primary: {
+          1: 'rgb(127, 151, 123)',
+        },
         second: {
+          30: 'rgba(30, 30, 30, 1)',
           100: 'rgba(100, 100, 100, 1)',
           229: 'rgba(229, 229, 229, 1)',
         },
+        highlight: 'rgb(224, 218, 72)',
       },
     },
   },

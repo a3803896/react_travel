@@ -1,0 +1,20 @@
+.Dropdown-control {
+  padding: 12px 20px 12px 30px !important;
+  display: flex;
+  justify-content: space-between;
+  justify-items: center;
+  .Dropdown-arrow-wrapper {
+    display: flex;
+    align-items: center;
+  }
+  .Dropdown-arrow {
+    content: url('../img/arrow-down.svg');
+    border-width: 0;
+    width: 16px;
+    height: 16px;
+  }
+  .is-open .Dropdown-arrow {
+    border-width: 0;
+    transform: rotate(180deg) !important;
+  }
+}

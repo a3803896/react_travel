@@ -68,3 +68,11 @@ span {
   word-wrap: break-word;
   word-break: break-word;
 }
+
+a.active {
+  @apply text-primary-1;
+  @include lg-width {
+    @apply border-b-2 border-highlight;
+    @apply pb-1;
+  }
+}
