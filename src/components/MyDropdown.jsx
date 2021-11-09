@@ -11,14 +11,25 @@
     },
   ];
   const [optionValue, setOptionValue] = useState('');
-  <MyDropdown options={options} optionValue={optionValue} setOptionValue={setOptionValue} />
+  <MyDropdown className='mb-2' options={options} optionValue={optionValue} setOptionValue={setOptionValue} placeHolder='' />
 */
 
 import React from 'react';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
+import arrowDown from '@/assets/img/arrow-down.svg';
 
-export default function MyDropdown({ optionValue, setOptionValue }) {
-  const options = ['one', 'two', 'three'];
-  return <Dropdown options={options} value={optionValue} onChange={(e) => setOptionValue(e.value)} placeholder='Select an option' />;
+export default function MyDropdown({ className, options, optionValue, setOptionValue, placeHolder }) {
+  return (
+    <Dropdown
+      className={`${className}`}
+      arrowClosed={<img src={arrowDown} alt='' />}
+      arrowOpen={<img src={arrowDown} alt='' />}
+      menuClassName='animate__animated animate__fadeIn'
+      options={options}
+      value={optionValue}
+      onChange={(e) => setOptionValue(e.value)}
+      placeholder={placeHolder}
+    />
+  );
 }

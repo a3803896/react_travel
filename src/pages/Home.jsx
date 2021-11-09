@@ -1,38 +1,13 @@
-import React, { useState } from 'react';
-import spotYellow from '@/assets/img/spot-yellow.svg';
-import MyDropdown from '@/components/MyDropdown';
-const options = [
-  { value: 'one', label: '一' },
-  { value: 'two', label: '二', className: 'myOptionClassName' },
-  {
-    type: 'group',
-    name: '第一分組',
-    items: [{ value: 'three', label: '三' }],
-  },
-];
+import React from 'react';
+import HomeNav from '../components/HomeNav';
+import MySwiper from '../components/MySwiper';
 
 export default function Home() {
-  const [optionValue, setOptionValue] = useState('');
   return (
     <main>
-      <div className='container px-4 pt-1.5'>
-        <section>
-          <div className='mb-8'>
-            <h1 className='text-second-30 font-light text-2.5xl leading-10 text-center mb-3'>
-              探索<span className='inline-block border-b-2 border-highlight leading-9'>台灣之美</span>
-              <br />
-              讓我們更親近這片土地
-            </h1>
-            <h2 className='flex justify-center items-center'>
-              <img src={spotYellow} alt='' />
-              <span className='text-second-100 text-sm leading-5 mr-1'>台灣旅遊景點導覽</span>
-              <span className='text-second-100 text-xs font-bold playfair'>Taiwan Travel Guide</span>
-            </h2>
-          </div>
-          <div>
-            <MyDropdown options={options} optionValue={optionValue} setOptionValue={setOptionValue} />
-          </div>
-        </section>
+      <div className='container px-4 pt-1.5 lg:pt-20'>
+        <HomeNav className='mb-8 lg:mb-14' />
+        <MySwiper className='mb-9' />
       </div>
     </main>
   );

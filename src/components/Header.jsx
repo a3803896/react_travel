@@ -14,7 +14,7 @@ export default function Header() {
           <img src={mobileLogo} className='lg:hidden' alt='LOGO' />
           <img src={pcLogo} className='hidden lg:block' alt='LOGO' />
         </Link>
-        <img onClick={() => setShowMenu(true)} src={mobileMenu} className='fixed right-2 top-2 lg:static lg:hidden' alt='打開選單' />
+        <img onClick={() => setShowMenu(true)} src={mobileMenu} className='fixed z-30 right-2 top-2 lg:static lg:hidden' alt='打開選單' />
         <ul className='hidden lg:flex'>
           <li className=''>
             <NavLink to='/scenic' className='text-second-100 text-lg leading-none'>
