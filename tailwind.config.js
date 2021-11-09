@@ -1,5 +1,5 @@
 module.exports = {
-  mode: 'jit',
+  // mode: 'jit',
   purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
   darkMode: false,
   theme: {
@@ -35,12 +35,14 @@ module.exports = {
         '350px': '350px',
       },
       height: {
+        15: '3.75rem',
         100: '25rem',
       },
       colors: {
         primary: {
           1: 'rgb(127, 151, 123)',
           1.2: 'rgba(127, 151, 123, 0.2)',
+          2: 'rgba(101, 137, 95, 1)',
         },
         second: {
           30: 'rgba(30, 30, 30, 1)',

@@ -1,6 +1,6 @@
 /* 
   使用方法：在父元件內
-  import MyDropdown from '@/components/MyDropdown';
+  import MyDropdown from '../components/MyDropdown';
   const options = [
     { value: 'one', label: '一' },
     { value: 'two', label: '二', className: 'myOptionClassName' },
@@ -17,7 +17,7 @@
 import React from 'react';
 import Dropdown from 'react-dropdown';
 import 'react-dropdown/style.css';
-import arrowDown from '@/assets/img/arrow-down.svg';
+import arrowDown from '../assets/img/arrow-down.svg';
 
 export default function MyDropdown({ className, options, optionValue, setOptionValue, placeHolder }) {
   return (

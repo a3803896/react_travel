@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import mobileMenu from '../assets/img/menu-mobile.svg';
-import mobileMenuClose from '@/assets/img/menu-mobile-close.svg';
-import mobileLogo from '@/assets/img/Logo-mobile.svg';
-import pcLogo from '@/assets/img/Logo-desktop.svg';
+import mobileMenuClose from '../assets/img/menu-mobile-close.svg';
+import mobileLogo from '../assets/img/Logo-mobile.svg';
+import pcLogo from '../assets/img/Logo-desktop.svg';
 
 export default function Header() {
   const [showMenu, setShowMenu] = useState(false);

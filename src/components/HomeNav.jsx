@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import spotYellow from '@/assets/img/spot-yellow.svg';
-import search from '@/assets/img/search30.svg';
-import MyDropdown from '@/components/MyDropdown';
+import spotYellow from '../assets/img/spot-yellow.svg';
+import search from '../assets/img/search30.svg';
+import MyDropdown from '../components/MyDropdown';
 const options = [
   { value: '探索景點', label: '探索景點' },
   { value: '節慶活動', label: '節慶活動' },

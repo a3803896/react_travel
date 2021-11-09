@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default function Info() {
-  return <div>info</div>;
+  return <main className='flex-grow'>info</main>;
 }

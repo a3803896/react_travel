@@ -1,13 +1,15 @@
 import React from 'react';
 import HomeNav from '../components/HomeNav';
 import MySwiper from '../components/MySwiper';
+import RecentAct from '../components/RecentAct';
 
 export default function Home() {
   return (
-    <main>
+    <main className='flex-grow'>
       <div className='container px-4 pt-1.5 lg:pt-20'>
         <HomeNav className='mb-8 lg:mb-14' />
         <MySwiper className='mb-9' />
+        <RecentAct />
       </div>
     </main>
   );

@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default function Activity() {
-  return <div>Activity</div>;
+  return <main className='flex-grow'>Activity</main>;
 }

@@ -1,6 +1,6 @@
 /* 
   使用方法：在父元件內
-  import MyDatePicker from '@/components/MyDatePicker';
+  import MyDatePicker from '../components/MyDatePicker';
   const [date, setDate] = useState(new Date());
   <MyDatePicker date={date} setDate={setDate} />
 */

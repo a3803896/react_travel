@@ -1,8 +1,8 @@
-import Home from '@/pages/Home';
-import ScenicSpot from '@/pages/ScenicSpot';
-import Restaurant from '@/pages/Restaurant';
-import Activity from '@/pages/Activity';
-import Info from '@/pages/Info';
+import Home from '../pages/Home';
+import ScenicSpot from '../pages/ScenicSpot';
+import Restaurant from '../pages/Restaurant';
+import Activity from '../pages/Activity';
+import Info from '../pages/Info';
 const routes = [
   {
     path: '/',

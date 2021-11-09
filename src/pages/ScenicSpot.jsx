@@ -1,5 +1,5 @@
 import React from 'react';
 
 export default function ScenicSpot() {
-  return <div>ScenicSpot</div>;
+  return <main className='flex-grow'>ScenicSpot</main>;
 }
