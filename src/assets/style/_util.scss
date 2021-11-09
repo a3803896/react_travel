@@ -76,3 +76,13 @@ a.active {
     @apply pb-1;
   }
 }
+
+.ellipsis-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  @include lg-width {
+    -webkit-line-clamp: 2;
+  }
+}
