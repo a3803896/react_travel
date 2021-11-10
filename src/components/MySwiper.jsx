@@ -13,9 +13,9 @@ export default function MySwiper({ className, photos }) {
     <Swiper className={`${className} scenicSwiper`} pagination={true} navigation={true}>
       {photos.map((item) => {
         return (
-          <SwiperSlide>
+          <SwiperSlide key={item.id}>
             <img src={item.img} alt={item.title} />
-            <Link to='/info' className='absolute z-10 text-white lg:text-2.5xl lg:leading-10 font-bold'>
+            <Link to={`/info`} className='absolute z-10 text-white lg:text-2.5xl lg:leading-10 font-bold'>
               {item.title}
             </Link>
           </SwiperSlide>
