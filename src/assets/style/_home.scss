@@ -1,0 +1,10 @@
+.activity_card {
+  .activity_card_logo {
+    transition: transform 0.1s linear;
+  }
+  &:hover {
+    .activity_card_logo {
+      transform: scale(110%);
+    }
+  }
+}

@@ -31,11 +31,13 @@ module.exports = {
         7.5: '1.875rem',
       },
       borderRadius: {
+        5: '20px',
         7.5: '30px',
       },
       fontSize: {
         '1.5xl': '1.375rem',
         '2.5xl': '1.75rem',
+        5.5: '1.375rem',
       },
       lineHeight: {
         13: '3.25rem',
@@ -49,6 +51,7 @@ module.exports = {
       },
       height: {
         15: '3.75rem',
+        50: '12.5rem',
         100: '25rem',
       },
       colors: {

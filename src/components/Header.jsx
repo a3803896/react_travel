@@ -9,7 +9,7 @@ export default function Header() {
   const [showMenu, setShowMenu] = useState(false);
   return (
     <header className='lg:sticky bg-white lg:border-b border-second-229 top-0 z-20'>
-      <div className='container flex justify-center lg:justify-between items-center h-16 lg:h-20 px-2'>
+      <div className='container flex justify-center lg:justify-between items-center h-16 lg:h-20'>
         <Link to='/' className=''>
           <img src={mobileLogo} className='lg:hidden' alt='LOGO' />
           <img src={pcLogo} className='hidden lg:block' alt='LOGO' />
