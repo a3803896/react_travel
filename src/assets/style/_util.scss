@@ -92,3 +92,19 @@ a.active {
     -webkit-line-clamp: 2;
   }
 }
+.iframe_wrap {
+  position: relative;
+  width: 100%;
+  height: 0;
+  padding-bottom: 53.62%;
+}
+.iframe_inner {
+  border-radius: 12px;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

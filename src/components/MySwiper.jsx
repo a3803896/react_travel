@@ -14,7 +14,7 @@ export default function MySwiper({ className, photos }) {
       {photos.map((item) => {
         return (
           <SwiperSlide key={item.id}>
-            <img src={item.img} alt={item.title} />
+            <img src={item.img} alt={item.discription} />
             <Link to={`/info`} className='absolute z-10 text-white lg:text-2.5xl lg:leading-10 font-bold'>
               {item.title}
             </Link>
