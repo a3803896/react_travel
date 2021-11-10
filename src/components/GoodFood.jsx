@@ -30,9 +30,9 @@ export default function RecentAct({ className }) {
         <div className='hidden lg:grid lg:grid-cols-4 lg:gap-x-7.5'>
           {info.map((item) => {
             return (
-              <div className='w-full pb-2.5' key={item.id}>
-                <Link to='/info' className='block w-full h-50 mb-2'>
-                  <img className='w-full h-full object-cover object-center rounded-5' src={item.img} alt={item.title} />
+              <div className='info_card w-full pb-2.5' key={item.id}>
+                <Link to='/info' className='block w-full h-50 rounded-5 overflow-hidden mb-2'>
+                  <img className='info_card_img w-full h-full object-cover object-center' src={item.img} alt={item.title} />
                 </Link>
                 <Link to='/info' className='block'>
                   <h5 className='text-lg lg:text-5.5 lg:leading-8 font-bold text-second-47 ellipsis-1 mb-1'>{item.title}</h5>

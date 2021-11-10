@@ -3,3 +3,13 @@
     width: 220px;
   }
 }
+.info_card {
+  .info_card_img {
+    transition: transform 0.1s linear;
+  }
+  &:hover {
+    .info_card_img {
+      transform: scale(110%);
+    }
+  }
+}
