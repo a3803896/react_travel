@@ -3,6 +3,7 @@ import HomeNav from '../components/HomeNav';
 import MySwiper from '../components/MySwiper';
 import RecentAct from '../components/RecentAct';
 import HotScenic from '../components/HotScenic';
+import GoodFood from '../components/GoodFood';
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
         <MySwiper className='mb-9' />
         <RecentAct className='mb-9' />
         <HotScenic className='mb-9' />
+        <GoodFood className='mb-9' />
       </div>
     </main>
   );

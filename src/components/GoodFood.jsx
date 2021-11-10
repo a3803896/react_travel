@@ -10,19 +10,18 @@ export default function RecentAct({ className }) {
     setInfo([
       {
         id: 0,
-        img: 'https://images.unsplash.com/photo-1636420401372-a11d0391dfe4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=387&q=80',
-        title: '龜山島牛奶海',
-        location: '宜蘭縣',
-        type: '',
+        img: 'https://images.unsplash.com/photo-1432139555190-58524dae6a55?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=876&q=80',
+        title: '金都餐廳',
+        location: '南投縣',
       },
     ]);
   }, []);
   return (
     <section className={`${className}`}>
       <div className='flex items-center justify-between mb-2 lg:mb-3 px-1 lg:px-4'>
-        <h2 className='text-2xl lg:text-4xl leading-9 lg:leading-13 font-light'>熱門打卡景點</h2>
-        <Link to='/scenic' className='text-warning-1 flex items-center select-none'>
-          查看更多景點
+        <h2 className='text-2xl lg:text-4xl leading-9 lg:leading-13 font-light'>一再回訪美食</h2>
+        <Link to='/restaurant' className='text-warning-1 flex items-center select-none'>
+          查看更多美食
           <img src={arrowRightWarning} className='w-4 h-4 ml-1' alt='查看更多' />
         </Link>
       </div>
