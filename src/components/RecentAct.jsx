@@ -26,7 +26,7 @@ export default function RecentAct({ className }) {
           <div className='flex-grow flex flex-col lg:bg-second-249 pl-4 pr-1 lg:px-7.5 lg:py-4'>
             <div className='lg:flex-grow'>
               <p className='text-second-100 mb-3/4 lg:mb-1 text-xs lg:text-base'>2021/10/30 - 2021/11/13</p>
-              <Link to='/info' className='block mb-1/4 lg:mb-0'>
+              <Link to='/' className='block mb-1/4 lg:mb-0'>
                 <h5 className='text-second-47 font-bold lg:text-1.5xl lg:leading-8 ellipsis-2'>2021 日月潭花火音樂嘉年華</h5>
               </Link>
             </div>
@@ -34,7 +34,7 @@ export default function RecentAct({ className }) {
               <p className='flex items-center text-second-100 text-xs lg:text-base'>
                 <img src={spotGrey} alt='南投縣' className='hidden lg:block mr-1' /> 南投縣
               </p>
-              <Link to='/info' className='justify-center text-primary-1 hidden lg:flex'>
+              <Link to='/' className='justify-center text-primary-1 hidden lg:flex'>
                 詳細介紹
                 <img src={arrowRightPrimary} alt='' />
               </Link>

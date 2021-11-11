@@ -31,10 +31,10 @@ export default function RecentAct({ className }) {
           {info.map((item) => {
             return (
               <div className='info_card w-full pb-2.5' key={item.id}>
-                <Link to='/info' className='block w-full h-50 rounded-5 overflow-hidden mb-2'>
+                <Link to='/' className='block w-full h-50 rounded-5 overflow-hidden mb-2'>
                   <img className='info_card_img w-full h-full object-cover object-center' src={item.img} alt={item.title} />
                 </Link>
-                <Link to='/info' className='block'>
+                <Link to='/' className='block'>
                   <h5 className='text-lg lg:text-5.5 lg:leading-8 font-bold text-second-47 ellipsis-1 mb-1'>{item.title}</h5>
                 </Link>
                 <div className='flex items-center'>
