@@ -2,7 +2,7 @@ import Home from '../pages/Home';
 import ScenicSpot from '../pages/ScenicSpot';
 import Restaurant from '../pages/Restaurant';
 import Activity from '../pages/Activity';
-import Info from '../pages/Info';
+import ActivityInfo from '../pages/ActivityInfo.jsx';
 const routes = [
   {
     path: '/',
@@ -25,9 +25,9 @@ const routes = [
     component: Activity,
   },
   {
-    path: '/info',
+    path: '/activityinfo',
     exact: false,
-    component: Info,
+    component: ActivityInfo,
   },
 ];
 
