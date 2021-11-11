@@ -29,7 +29,7 @@ export default function ActivityInfo() {
   }, []);
   return (
     <main className='flex-grow'>
-      <div className='container px-4 lg:px-0 pt-6'>
+      <div className='container px-4 lg:px-0 pt-6 lg:pt-15'>
         <div className='text-xs leading-5 lg:text-base lg:leading-7 mb-4 lg:mb-7.5'>
           <Link className='text-primary-3 mr-1 lg:mr-2' to='/'>
             首頁

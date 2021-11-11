@@ -27,6 +27,7 @@ module.exports = {
         1.5: '0.375rem',
         2.5: '0.625rem',
         7.5: '1.875rem',
+        15: '3.75rem',
         '95px': '95px',
       },
       spacing: {
@@ -53,6 +54,7 @@ module.exports = {
       },
       height: {
         15: '3.75rem',
+        31: '7.75rem',
         50: '12.5rem',
         100: '25rem',
       },

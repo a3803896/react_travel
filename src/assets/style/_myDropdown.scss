@@ -20,11 +20,21 @@
   transform: rotate(180deg) !important;
 }
 .Dropdown-menu {
-  max-height: unset;
+  max-height: 350px;
   @apply shadow-none rounded-md border border-second-229 mt-2;
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
+  &::-webkit-scrollbar,
+  &::-webkit-scrollbar-thumb {
+    overflow: visible;
+    border-radius: 2px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: rgba(219, 219, 219, 1);
+  }
   .Dropdown-option {
-    padding: 10px 30px;
-    @apply leading-7 text-second-47 border-b border-second-229 last:border-b-0;
+    @apply leading-7 text-second-47 border-b border-second-229 last:border-b-0 px-7.5 py-2.5;
     &:hover {
       @apply bg-primary-1.2;
     }

@@ -13,8 +13,7 @@
     const [optionValue, setOptionValue] = useState('');
     <MyDropdown className='mb-2' options={options} optionValue={optionValue} setOptionValue={setOptionValue} placeHolder='' />
 
-  2.若需要用其他元素修改 dropdown 的值：
-    dropdownRef.current.fireChangeEvent({selected: {value: 'VALUE_YOU_WANT'}});
+  2.若需要用其他元素修改 dropdown 的值： 直接 setOptionValue 就可以了。
 */
 
 import React from 'react';
