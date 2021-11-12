@@ -1,5 +1,5 @@
 import Home from '../pages/Home';
-import ScenicSpot from '../pages/ScenicSpot';
+import Scenic from '../pages/Scenic';
 import Restaurant from '../pages/Restaurant';
 import Activity from '../pages/Activity';
 import ActivityInfo from '../pages/ActivityInfo';
@@ -14,7 +14,7 @@ const routes = [
   {
     path: '/scenic',
     exact: false,
-    component: ScenicSpot,
+    component: Scenic,
   },
   {
     path: '/restaurant',

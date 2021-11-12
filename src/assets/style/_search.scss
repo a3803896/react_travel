@@ -1,0 +1,31 @@
+.actived-link {
+  color: rgba(101, 137, 95, 1) !important;
+  border-color: rgba(101, 137, 95, 1) !important;
+}
+.disabled-link {
+  background-color: rgb(229, 229, 229) !important;
+  cursor: default;
+  img {
+    filter: invert(52%) sepia(12%) saturate(1050%) hue-rotate(65deg) brightness(93%) contrast(84%);
+  }
+}
+.filterCard {
+  border-radius: 36px;
+  filter: grayscale(100%);
+  transition: box-shadow 0.1s linear, height 0.1s ease-in-out;
+  &.selected,
+  &.selected-exact {
+    filter: none;
+  }
+  &.selected-exact {
+    box-shadow: rgba(190, 163, 99, 1) 0px 0px 0px 4px;
+  }
+}
+.searched {
+  .filterCard {
+    height: 28px !important;
+    @include lg-width {
+      height: 38px !important;
+    }
+  }
+}

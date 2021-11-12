@@ -28,7 +28,7 @@ export default function ActivityInfo() {
     ]);
   }, []);
   return (
-    <main className='flex-grow'>
+    <main className='flex-grow pb-9'>
       <div className='container px-4 lg:px-0 pt-6 lg:pt-15'>
         <div className='text-xs leading-5 lg:text-base lg:leading-7 mb-4 lg:mb-7.5'>
           <Link className='text-primary-3 mr-1 lg:mr-2' to='/'>
@@ -114,7 +114,7 @@ export default function ActivityInfo() {
             </div>
           </div>
         </div>
-        <section className='mb-9'>
+        <section className=''>
           <div className='flex items-center justify-between mb-2 lg:mb-3 px-1 lg:px-4'>
             <h2 className='text-2xl lg:text-4xl leading-9 lg:leading-13 font-light'>
               還有這些不能錯過<span className='hidden lg:inline'>的美食</span>

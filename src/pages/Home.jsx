@@ -18,13 +18,13 @@ export default function Home() {
     ]);
   }, []);
   return (
-    <main className='flex-grow'>
+    <main className='flex-grow pb-9'>
       <div className='container px-4 pt-1.5 lg:px-0 lg:pt-20'>
         <HomeNav className='mb-8 lg:mb-14' />
         <MySwiper photos={photos} className='mb-9' />
         <RecentAct className='mb-9' />
         <HotScenic className='mb-9' />
-        <GoodFood className='mb-9' />
+        <GoodFood className='' />
       </div>
     </main>
   );
