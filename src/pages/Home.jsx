@@ -29,10 +29,14 @@ export default function Home() {
   }
   function getActvity() {
     axios
-      .get('https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity?$filter=month(StartTime)%20eq%2011&$orderby=EndTime&$top=25&$format=JSON', {
-        // 欲呼叫之API網址(此範例為台鐵車站資料)
-        headers: getAuthorizationHeader(),
-      })
+      .get(
+        `https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity?$filter=month(StartTime)%20eq%20${
+          new Date().getMonth() + 1
+        }&$orderby=EndTime&$top=25&$format=JSON`,
+        {
+          headers: getAuthorizationHeader(),
+        }
+      )
       .then(function (res) {
         const resArr = shuffle(res.data.filter((item) => item.Picture.PictureUrl1));
         setRecentActivity(resArr.slice(0, 4));
@@ -44,7 +48,6 @@ export default function Home() {
       .get(
         `https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?$filter=contains(DescriptionDetail%2C%27${keyword}%27)&$orderby=UpdateTime&$top=30&$format=JSON`,
         {
-          // 欲呼叫之API網址(此範例為台鐵車站資料)
           headers: getAuthorizationHeader(),
         }
       )
@@ -67,7 +70,6 @@ export default function Home() {
     const keyword = '熱門';
     axios
       .get(`https://ptx.transportdata.tw/MOTC/v2/Tourism/Restaurant?$filter=contains(Description%2C'${keyword}')&$orderby=UpdateTime&$format=JSON`, {
-        // 欲呼叫之API網址(此範例為台鐵車站資料)
         headers: getAuthorizationHeader(),
       })
       .then((res) => {

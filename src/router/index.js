@@ -27,17 +27,17 @@ const routes = [
     component: Activity,
   },
   {
-    path: '/activityinfo',
+    path: '/activityinfo/:id',
     exact: false,
     component: ActivityInfo,
   },
   {
-    path: '/scenicinfo',
+    path: '/scenicinfo/:id',
     exact: false,
     component: ScenicInfo,
   },
   {
-    path: '/restaurantinfo',
+    path: '/restaurantinfo/:id',
     exact: false,
     component: RestaurantInfo,
   },

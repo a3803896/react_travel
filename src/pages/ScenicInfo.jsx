@@ -125,7 +125,7 @@ export default function ActivityInfo() {
         <section className=''>
           <div className='flex items-center justify-between mb-2 lg:mb-3 px-1 lg:px-4'>
             <h2 className='text-2xl lg:text-4xl leading-9 lg:leading-13 font-light'>
-              還有這些不能錯過<span className='hidden lg:inline'>的景點</span>
+              還有這些<span className='hidden lg:inline'>不能錯過的景點</span>
             </h2>
             <Link to='/scenic' className='text-warning-1 flex items-center select-none'>
               查看更多活動

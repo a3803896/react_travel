@@ -9,9 +9,10 @@ import SwiperCore, { Pagination, Navigation } from 'swiper';
 SwiperCore.use([Pagination, Navigation]);
 
 export default function MySwiper({ className, photos }) {
+  let clearPhotos = photos.filter((item) => item.img);
   return (
     <Swiper className={`${className} scenicSwiper`} pagination={true} navigation={true}>
-      {photos.map((item) => {
+      {clearPhotos.map((item) => {
         return (
           <SwiperSlide key={item.id}>
             <img src={item.img} alt={item.discription} />
