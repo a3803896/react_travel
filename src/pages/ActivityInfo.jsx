@@ -9,6 +9,7 @@ import nearbyEvent from '../assets/img/nearby-event30.svg';
 import nearbyFood from '../assets/img/nearby-food30.svg';
 import arrowRightWarning from '../assets/img/arrowRightWarning.svg';
 import spotGrey from '../assets/img/spot-grey.svg';
+import noImg from '../assets/img/no-image-icon.PNG';
 
 const countries = [
   { value: 'Taipei', label: '臺北市' },
@@ -109,11 +110,11 @@ export default function ActivityInfo() {
         }
       )
       .then(function (res) {
-        let targetArr = res.data.filter((item) => item.ID !== id && item.Picture.PictureUrl1);
+        let targetArr = res.data.filter((item) => item.ID !== id);
         targetArr = shuffle(targetArr).map((item) => {
           return {
             id: item.ID,
-            img: item.Picture.PictureUrl1,
+            img: item.Picture.PictureUrl1 || noImg,
             title: item.Name,
             location: item.City,
             type: '活動',
