@@ -10,10 +10,13 @@ export default function MoreSwiper({ className, info }) {
         return (
           <SwiperSlide key={item.id}>
             <div className='w-full pb-2.5'>
-              <Link to='/' className='block w-full h-40 mb-2'>
+              <Link
+                to={`/${item.type === '景點' ? 'scenicinfo' : item.type === '活動' ? 'activityinfo' : 'restaurantinfo'}/${item.id}`}
+                className='block w-full h-40 mb-2'>
                 <img className='w-full h-full object-cover object-center rounded-5' src={item.img} alt={item.title} />
               </Link>
-              <Link to='/' className='block'>
+              {/* 用 item.type 來判斷要導向何處 */}
+              <Link to={`/${item.type === '景點' ? 'scenicinfo' : item.type === '活動' ? 'activityinfo' : 'restaurantinfo'}/${item.id}`} className='block'>
                 <h5 className='text-lg text-second-47 ellipsis-1 mb-1'>{item.title}</h5>
               </Link>
               <div className='flex items-center'>

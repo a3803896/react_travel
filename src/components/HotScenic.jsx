@@ -4,19 +4,20 @@ import MoreSwiper from './MoreSwiper';
 import arrowRightWarning from '../assets/img/arrowRightWarning.svg';
 import spotGrey from '../assets/img/spot-grey.svg';
 
-export default function RecentAct({ className }) {
+export default function RecentAct({ className, dataArray }) {
   const [info, setInfo] = useState([]);
   useEffect(() => {
-    setInfo([
-      {
-        id: 0,
-        img: 'https://images.unsplash.com/photo-1636420401372-a11d0391dfe4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=387&q=80',
-        title: '龜山島牛奶海',
-        location: '宜蘭縣',
-        type: '',
-      },
-    ]);
-  }, []);
+    let infoArr = dataArray.map((item) => {
+      return {
+        id: item.ID,
+        img: item.Picture.PictureUrl1,
+        title: item.Name,
+        location: item.City,
+        type: '景點',
+      };
+    });
+    setInfo(infoArr);
+  }, [dataArray]);
   return (
     <section className={`${className}`}>
       <div className='flex items-center justify-between mb-2 lg:mb-3 px-1 lg:px-4'>
@@ -32,10 +33,10 @@ export default function RecentAct({ className }) {
           {info.map((item) => {
             return (
               <div className='info_card w-full pb-2.5' key={item.id}>
-                <Link to='/' className='block w-full h-50 rounded-5 overflow-hidden mb-2'>
+                <Link to={`/scenicinfo/${item.id}`} className='block w-full h-50 rounded-5 overflow-hidden mb-2'>
                   <img className='info_card_img w-full h-full object-cover object-center' src={item.img} alt={item.title} />
                 </Link>
-                <Link to='/' className='block'>
+                <Link to={`/scenicinfo/${item.id}`} className='block'>
                   <h5 className='text-lg lg:text-5.5 lg:leading-8 font-bold text-second-47 ellipsis-1 mb-1'>{item.title}</h5>
                 </Link>
                 <div className='flex items-center'>
