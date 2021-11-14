@@ -25,6 +25,7 @@
     "react-scripts": "4.0.3",
     "swiper": "^6.8.4"
   },
+  "homepage": "https://a3803896.github.io/react_travel/",
   "scripts": {
     "start": "craco start",
     "build": "craco build",

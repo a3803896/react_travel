@@ -28,17 +28,17 @@ export default function Home() {
     return a;
   }
   function getActvity() {
+    let d = new Date();
+    let date = `${d.getFullYear()}-${d.getMonth() + 1}-${d.getDate()}`;
     axios
       .get(
-        `https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity?$filter=month(StartTime)%20eq%20${
-          new Date().getMonth() + 1
-        }&$orderby=EndTime&$top=25&$format=JSON`,
+        `https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity/?$filter=date(StartTime)%20le%20${date}%20and%20date(EndTime)%20ge%20${date}&$orderby=EndTime&$format=JSON`,
         {
           headers: getAuthorizationHeader(),
         }
       )
       .then(function (res) {
-        const resArr = shuffle(res.data.filter((item) => item.Picture.PictureUrl1));
+        const resArr = res.data.filter((item) => item.Picture.PictureUrl1);
         setRecentActivity(resArr.slice(0, 4));
       });
   }
