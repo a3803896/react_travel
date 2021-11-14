@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router';
 import spotYellow from '../assets/img/spot-yellow.svg';
 import search from '../assets/img/search30.svg';
 import MyDropdown from '../components/MyDropdown';
@@ -7,9 +8,17 @@ const options = [
   { value: '節慶活動', label: '節慶活動' },
   { value: '品嚐美食', label: '品嚐美食' },
 ];
-
 export default function HomeNav({ className }) {
+  const history = useHistory();
   const [optionValue, setOptionValue] = useState('探索景點');
+  const [keyword, setKeyword] = useState('');
+  function goSearch() {
+    if (!keyword) {
+      history.push(`/${optionValue === '探索景點' ? 'scenic' : optionValue === '節慶活動' ? 'activity' : 'restaurant'}`);
+    } else {
+      history.push(`/${optionValue === '探索景點' ? 'scenic' : optionValue === '節慶活動' ? 'activity' : 'restaurant'}?city=全部縣市&q=${keyword}`);
+    }
+  }
   return (
     <section className={`${className} lg:flex lg:justify-between lg:px-95px`}>
       <div className='mb-8 lg:mb-0'>
@@ -27,11 +36,12 @@ export default function HomeNav({ className }) {
       <div className='lg:w-350px'>
         <MyDropdown className='mb-2' options={options} optionValue={optionValue} setOptionValue={setOptionValue} placeHolder='' />
         <input
+          onInput={(e) => setKeyword(e.target.value.trim())}
           type='text'
           placeholder='你想去哪裡？請輸入關鍵字'
           className='border border-second-229 bg-second-249 rounded-md w-full placeholder-second-158 leading-7 text-second-47 focus:outline-none px-7.5 py-3 mb-2'
         />
-        <button className='bg-primary-1 rounded-md flex items-center justify-center w-full py-2.5'>
+        <button onClick={goSearch} className='bg-primary-1 rounded-md flex items-center justify-center w-full py-2.5'>
           <img src={search} alt='搜尋icon' className='mr-2.5' />
           <p className='text-white leading-7 flex justify-between items-center' style={{ width: '63px' }}>
             <span>搜</span>
