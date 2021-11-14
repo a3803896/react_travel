@@ -11,7 +11,7 @@ import '@/assets/style/all.scss';
 ReactDOM.render(
   <React.StrictMode>
     {/* <Provider store={store}> */}
-    <BrowserRouter>
+    <BrowserRouter basename={window.location.pathname || ''}>
       <ScrollToTop />
       <App />
     </BrowserRouter>
