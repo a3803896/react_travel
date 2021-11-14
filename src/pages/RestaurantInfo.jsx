@@ -42,6 +42,7 @@ export default function RestaurantInfo() {
   const [info, setInfo] = useState([]);
   const [photo, setPhoto] = useState([]);
   const [country, setCountry] = useState('');
+  const [engCity, setEngCity] = useState('');
   // mounted
   useEffect(() => {
     getDetail();
@@ -99,6 +100,7 @@ export default function RestaurantInfo() {
   function getInfo() {
     if (!country) return;
     let targetObj = countries.find((item) => item.label === country);
+    setEngCity(targetObj.value);
     axios
       .get(`https://ptx.transportdata.tw/MOTC/v2/Tourism/Restaurant/${targetObj.value}?$orderby=UpdateTime&$top=25&$format=JSON`, {
         headers: getAuthorizationHeader(),
@@ -130,7 +132,7 @@ export default function RestaurantInfo() {
             在地美食
           </Link>
           <span className='text-second-100 mr-1 lg:mr-2'>/</span>
-          <Link className='text-primary-3 mr-1 lg:mr-2' to='/restaurant'>
+          <Link className='text-primary-3 mr-1 lg:mr-2' to={`/restaurant?city=${engCity}`}>
             {detail.City}
           </Link>
           <span className='text-second-100 mr-1 lg:mr-2'>/</span>
@@ -191,18 +193,24 @@ export default function RestaurantInfo() {
             </div>
             <h5 className='text-lg lg:text-xl font-bold mb-5'>周邊資訊：</h5>
             <div className='grid grid-cols-1 lg:grid-cols-3 gap-y-2 lg:gap-y-0 lg:gap-x-7.5'>
-              <button className='flex flex-col items-center justify-center border border-second-229 rounded-md py-2 lg:py-6'>
+              <Link
+                to={`/scenic?lat=${detail.Position.PositionLat}&long=${detail.Position.PositionLon}`}
+                className='flex flex-col items-center justify-center border border-second-229 rounded-md py-2 lg:py-6'>
                 <img src={nearbyScenic} alt='' className='mb-1/2' />
                 <p className='font-bold leading-7 text-primary-1'>附近景點</p>
-              </button>
-              <button className='flex flex-col items-center justify-center border border-second-229 rounded-md py-2 lg:py-6'>
+              </Link>
+              <Link
+                to={`/activity?lat=${detail.Position.PositionLat}&long=${detail.Position.PositionLon}`}
+                className='flex flex-col items-center justify-center border border-second-229 rounded-md py-2 lg:py-6'>
                 <img src={nearbyEvent} alt='' className='mb-1/2' />
-                <p className='font-bold leading-7 text-primary-1'>附近景點</p>
-              </button>
-              <button className='flex flex-col items-center justify-center border border-second-229 rounded-md py-2 lg:py-6'>
+                <p className='font-bold leading-7 text-primary-1'>附近活動</p>
+              </Link>
+              <Link
+                to={`/restaurant?lat=${detail.Position.PositionLat}&long=${detail.Position.PositionLon}`}
+                className='flex flex-col items-center justify-center border border-second-229 rounded-md py-2 lg:py-6'>
                 <img src={nearbyFood} alt='' className='mb-1/2' />
-                <p className='font-bold leading-7 text-primary-1'>附近景點</p>
-              </button>
+                <p className='font-bold leading-7 text-primary-1'>附近美食</p>
+              </Link>
             </div>
           </div>
         </div>

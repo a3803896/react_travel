@@ -13,6 +13,7 @@ import farmingImg from '../assets/img/休閒農業.png';
 import ecologyImg from '../assets/img/生態.png';
 import hotspringImg from '../assets/img/溫泉.png';
 import historicImg from '../assets/img/古蹟.png';
+import emptyImg from '../assets/img/empty.png';
 const options = [
   { value: '全部縣市', label: '全部縣市' },
   { value: 'Taipei', label: '臺北市' },
@@ -58,6 +59,7 @@ export default function Scenic() {
   const [filter, setFilter] = useState('');
   const [searchRes, setSearchRes] = useState([]);
   const [filteredRes, setFilteredRes] = useState([]);
+  const [isEmpty, setIsEmpty] = useState(false);
   // mounted
   useEffect(() => {
     if (!search) return;
@@ -92,13 +94,18 @@ export default function Scenic() {
     history.replace(`/scenic?city=${optionValue}&q=${keyword}`);
   }
   function searchHandler() {
+    setIsEmpty(false);
     let keyObj = qs.decode(search.slice(1));
-    let city = keyObj.city === '全部縣市' ? '' : `/${keyObj.city}`;
-    let { q } = keyObj;
+    let city = keyObj.city === '全部縣市' ? '' : keyObj.city === undefined ? '' : `/${keyObj.city}`;
+    let { q, lat, long } = keyObj;
+    q = q || '';
     setKeyword(q);
+    setOptionValue(keyObj.city || '全部縣市');
     axios
       .get(
-        `https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot${city}?$filter=contains(DescriptionDetail%2C'${q}')%20or%20contains(Name%2C'${q}')%20or%20contains(Address%2C'${q}')&$orderby=Name&$top=240&$format=JSON`,
+        `https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot${city}?$filter=contains(DescriptionDetail%2C'${q}')%20or%20contains(Name%2C'${q}')%20or%20contains(Address%2C'${q}')&$orderby=Name&$top=240${
+          lat && long ? `&$spatialFilter=nearby(${lat}%2C%20${long}%2C%20${2000})` : ''
+        }&$format=JSON`,
         {
           headers: getAuthorizationHeader(),
         }
@@ -106,6 +113,10 @@ export default function Scenic() {
       .then((res) => {
         let targetArr = res.data.map((item) => ({ ...item, type: '景點' }));
         setSearchRes(targetArr);
+        if (targetArr.length === 0) setIsEmpty(true);
+      })
+      .catch(() => {
+        setIsEmpty(true);
       });
   }
   // template
@@ -169,7 +180,11 @@ export default function Scenic() {
               共有 <span className='text-info'> {filteredRes.length} </span> 筆
             </p>
           </div>
-          <MyPegination datas={filteredRes} itemsPerPage={20} scrollup={scrollToTitle} />
+          {isEmpty ? (
+            <img src={emptyImg} alt='搜尋結果為 0' className='mx-auto mt-15 lg:mt-20' />
+          ) : (
+            <MyPegination datas={filteredRes} itemsPerPage={20} scrollup={scrollToTitle} />
+          )}
         </section>
       </div>
     </main>

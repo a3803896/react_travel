@@ -1,15 +1,19 @@
-import React, { useState, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useRef, useEffect } from 'react';
+import { Link, useHistory, useLocation } from 'react-router-dom';
+import qs from 'querystring';
+import axios from 'axios';
+import getAuthorizationHeader from '../plugins/getAuthorizationHeader';
 import MyDropdown from '../components/MyDropdown';
-import MyPegination from '../components/MyPegination';
 import MyDatePicker from '../components/MyDatePicker';
-import search from '../assets/img/search30.svg';
+import MyPegination from '../components/MyPegination';
+import searchIcon from '../assets/img/search30.svg';
 import festvalImg from '../assets/img/節慶活動.png';
 import bikeImg from '../assets/img/自行車活動.png';
 import tourImg from '../assets/img/遊憩活動.png';
 import cultureImg from '../assets/img/產業文化活動.png';
 import yearImg from '../assets/img/年度活動.png';
 import seasonalImg from '../assets/img/四季活動.png';
+import emptyImg from '../assets/img/empty.png';
 const options = [
   { value: '全部縣市', label: '全部縣市' },
   { value: 'Taipei', label: '臺北市' },
@@ -45,10 +49,33 @@ const filters = [
 ];
 
 export default function Activity() {
+  let history = useHistory();
+  let { search } = useLocation();
+  // data
   const titleRef = useRef();
   const [date, setDate] = useState('');
   const [optionValue, setOptionValue] = useState(options[0].value);
   const [filter, setFilter] = useState('');
+  const [keyword, setKeyword] = useState('');
+  const [searchRes, setSearchRes] = useState([]);
+  const [filteredRes, setFilteredRes] = useState([]);
+  const [isEmpty, setIsEmpty] = useState(false);
+  // mounted
+  useEffect(() => {
+    if (!search) return;
+    searchHandler();
+  }, [search]);
+  useEffect(() => {
+    if (!search) return;
+    let filteredArr;
+    if (filter === '') {
+      filteredArr = searchRes;
+    } else {
+      filteredArr = searchRes.filter((item) => item.Class1 === filter || item.Class2 === filter);
+    }
+    setFilteredRes(filteredArr);
+  }, [filter, searchRes]);
+  // methods
   function scrollToTitle() {
     if (window.innerWidth < 992) {
       titleRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -63,6 +90,42 @@ export default function Activity() {
     if (title === filter) return setFilter('');
     setFilter(title);
   }
+  function replaceUrl() {
+    let targetDate;
+    if (!date) {
+      targetDate = '';
+    } else {
+      targetDate = new Date(date).toLocaleDateString().split('/').join('-');
+    }
+    history.replace(`/activity?city=${optionValue}&q=${keyword}&date=${targetDate}`);
+  }
+  function searchHandler() {
+    setIsEmpty(false);
+    let keyObj = qs.decode(search.slice(1));
+    let city = keyObj.city === '全部縣市' ? '' : keyObj.city === undefined ? '' : `/${keyObj.city}`;
+    let { q, date, lat, long } = keyObj;
+    q = q || '';
+    setKeyword(q);
+    setOptionValue(keyObj.city || '全部縣市');
+    axios
+      .get(
+        `https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity/${city}?$filter=(contains(Description,%27${q}%27)%20or%20contains(Name,%27${q}%27)%20or%20contains(Address,%27${q}%27))${
+          date ? `%20and%20(date(StartTime)%20le%20${date}%20and%20date(EndTime)%20ge%20${date})` : ''
+        }&$orderby=EndTime${lat && long ? `&$spatialFilter=nearby(${lat}%2C%20${long}%2C%20${2000})` : ''}&$format=JSON`,
+        {
+          headers: getAuthorizationHeader(),
+        }
+      )
+      .then((res) => {
+        let targetArr = res.data.map((item) => ({ ...item, type: '活動' }));
+        setSearchRes(targetArr);
+        if (targetArr.length === 0) setIsEmpty(true);
+      })
+      .catch(() => {
+        setIsEmpty(true);
+      });
+  }
+  // template
   return (
     <main className='flex-grow pb-9'>
       <div className='container px-4 lg:px-0 pt-6 lg:pt-15'>
@@ -83,12 +146,14 @@ export default function Activity() {
           />
           <MyDatePicker className='activity_datepicker' date={date} setDate={setDate} />
           <input
+            value={keyword}
+            onInput={(e) => setKeyword(e.target.value.trim())}
             type='text'
             placeholder='你想去哪裡？請輸入關鍵字'
             className='border border-second-229 bg-second-249 rounded-md w-full lg:w-auto flex-grow placeholder-second-158 leading-7 text-second-47 focus:outline-none px-7.5 py-3 mb-2 lg:mb-0 lg:mx-4'
           />
-          <button className='bg-primary-1 rounded-md flex items-center justify-center w-full lg:w-60 flex-shrink-0 flex-grow-0 py-2.5'>
-            <img src={search} alt='搜尋icon' className='mr-2.5' />
+          <button onClick={replaceUrl} className='bg-primary-1 rounded-md flex items-center justify-center w-full lg:w-60 flex-shrink-0 flex-grow-0 py-2.5'>
+            <img src={searchIcon} alt='搜尋icon' className='mr-2.5' />
             <p className='text-white leading-7 flex justify-between items-center' style={{ width: '63px' }}>
               <span>搜</span>
               <span>尋</span>
@@ -97,8 +162,7 @@ export default function Activity() {
         </div>
         <section className='mb-6'>
           <h2 className='font-light text-2xl lg:text-4xl leading-9 lg:leading-13 text-second-30 mb-4 lg:mb-3 pl-1 lg:pl-2.5'>熱門主題</h2>
-          {/* 搜尋後加上 searched */}
-          <div className='grid grid-cols-2 lg:grid-cols-4 gap-x-4 lg:gap-x-7.5 gap-y-3'>
+          <div className={`${searchRes.length ? 'searched' : ''} grid grid-cols-2 lg:grid-cols-4 gap-x-4 lg:gap-x-7.5 gap-y-3`}>
             {filters.map((item) => {
               return (
                 <div
@@ -120,24 +184,14 @@ export default function Activity() {
               搜尋結果
             </h2>
             <p className='text-sm lg:text-lg leading-5 lg:leading-6 font-light text-second-30'>
-              共有 <span className='text-info'> 240 </span> 筆
+              共有 <span className='text-info'> {filteredRes.length} </span> 筆
             </p>
           </div>
-          <MyPegination
-            datas={[
-              1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39,
-              40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75,
-              76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109,
-              110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126, 127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138,
-              139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
-              25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
-              61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96,
-              97, 98, 99, 100, 101, 102, 103, 104, 105, 106, 107, 108, 109, 110, 111, 112, 113, 114, 115, 116, 117, 118, 119, 120, 121, 122, 123, 124, 125, 126,
-              127, 128, 129, 130, 131, 132, 133, 134, 135, 136, 137, 138, 139, 140, 141, 142, 143, 144, 145, 146, 147, 148, 149, 150,
-            ]}
-            itemsPerPage={20}
-            scrollup={scrollToTitle}
-          />
+          {isEmpty ? (
+            <img src={emptyImg} alt='搜尋結果為 0' className='mx-auto mt-15 lg:mt-20' />
+          ) : (
+            <MyPegination datas={filteredRes} itemsPerPage={20} scrollup={scrollToTitle} />
+          )}
         </section>
       </div>
     </main>
