@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
 import qs from 'querystring';
+import axios from 'axios';
 import getAuthorizationHeader from '../plugins/getAuthorizationHeader';
 import MyDropdown from '../components/MyDropdown';
 import MyPegination from '../components/MyPegination';
@@ -12,7 +13,6 @@ import farmingImg from '../assets/img/休閒農業.png';
 import ecologyImg from '../assets/img/生態.png';
 import hotspringImg from '../assets/img/溫泉.png';
 import historicImg from '../assets/img/古蹟.png';
-import axios from 'axios';
 const options = [
   { value: '全部縣市', label: '全部縣市' },
   { value: 'Taipei', label: '臺北市' },
@@ -98,7 +98,10 @@ export default function Scenic() {
     setKeyword(q);
     axios
       .get(
-        `https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot${city}?$filter=contains(DescriptionDetail%2C'${q}')%20or%20contains(Name%2C'${q}')%20or%20contains(Address%2C'${q}')&$orderby=Name&$top=240&$format=JSON`
+        `https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot${city}?$filter=contains(DescriptionDetail%2C'${q}')%20or%20contains(Name%2C'${q}')%20or%20contains(Address%2C'${q}')&$orderby=Name&$top=240&$format=JSON`,
+        {
+          headers: getAuthorizationHeader(),
+        }
       )
       .then((res) => {
         let targetArr = res.data.map((item) => ({ ...item, type: '景點' }));
