@@ -5,6 +5,7 @@ import Activity from '../pages/Activity';
 import ActivityInfo from '../pages/ActivityInfo';
 import ScenicInfo from '../pages/ScenicInfo';
 import RestaurantInfo from '../pages/RestaurantInfo';
+import Bike from '../pages/Bike';
 const routes = [
   {
     path: '/',
@@ -40,6 +41,11 @@ const routes = [
     path: '/restaurantinfo/:id',
     exact: false,
     component: RestaurantInfo,
+  },
+  {
+    path: '/bike',
+    exact: false,
+    component: Bike,
   },
 ];
 

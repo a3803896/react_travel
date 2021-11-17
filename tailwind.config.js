@@ -10,6 +10,9 @@ module.exports = {
       xl: '1200px',
     },
     extend: {
+      boxShadow: {
+        deep: 'rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 2px 5px',
+      },
       margin: {
         '1/4': '1px',
         '3/4': '3px',
@@ -32,6 +35,7 @@ module.exports = {
       },
       spacing: {
         7.5: '1.875rem',
+        84: '21rem',
       },
       borderRadius: {
         5: '20px',
@@ -49,6 +53,7 @@ module.exports = {
       width: {
         22.5: '5.625rem',
         69: '17.25rem',
+        84: '21rem',
         100: '25rem',
         '350px': '350px',
       },

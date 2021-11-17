@@ -43,7 +43,7 @@ export default function Home() {
       });
   }
   function getScenic() {
-    const keyword = '秋天';
+    const keyword = '自然';
     axios
       .get(
         `https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?$filter=contains(DescriptionDetail%2C%27${keyword}%27)&$orderby=UpdateTime&$top=30&$format=JSON`,
@@ -59,7 +59,7 @@ export default function Home() {
             id: item.ID,
             img: item.Picture.PictureUrl1,
             discription: item.Name,
-            title: `${item.City} | ${item.Name}`,
+            title: `${item.City || ''} ${item.City ? '|' : ''} ${item.Name}`,
           };
         });
         setScenic(resArr.slice(0, 4));

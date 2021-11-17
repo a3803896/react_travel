@@ -31,6 +31,11 @@ export default function Header() {
               品嚐美食
             </NavLink>
           </li>
+          <li className='ml-5'>
+            <NavLink to='/bike' className='text-second-100 text-lg leading-none'>
+              自行車旅遊
+            </NavLink>
+          </li>
         </ul>
       </div>
       {showMenu && <MobileMenu showMenu={showMenu} setShowMenu={setShowMenu} />}
@@ -69,9 +74,14 @@ function MobileMenu({ setShowMenu }) {
               節慶活動
             </NavLink>
           </li>
-          <li>
+          <li className='border-b border-second-229'>
             <NavLink onClick={closeMenu} to='/restaurant' className='block select-none text-center text-xl text-second-100 py-6'>
               品嚐美食
+            </NavLink>
+          </li>
+          <li>
+            <NavLink onClick={closeMenu} to='/bike' className='block select-none text-center text-xl text-second-100 py-6'>
+              自行車旅遊
             </NavLink>
           </li>
         </ul>

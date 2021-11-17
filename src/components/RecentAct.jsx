@@ -45,7 +45,7 @@ export default function RecentAct({ className, dataArray }) {
                 </div>
                 <div className='flex justify-between items-center'>
                   <p className='flex items-center text-second-100 text-xs lg:text-base'>
-                    <img src={spotGrey} alt='南投縣' className='hidden lg:block mr-1' /> {item.City}
+                    <img src={spotGrey} alt={item.City} className='hidden lg:block mr-1' /> {item.City}
                   </p>
                   <Link to={`/activityinfo/${item.ID}`} className='justify-center text-primary-1 hidden lg:flex'>
                     詳細介紹
