@@ -326,7 +326,7 @@ const town_data = {
   連江縣: ['南竿鄉', '北竿鄉', '莒光鄉', '東引鄉'],
 };
 
-export default function MapMenu({ isShow, setIsShow }) {
+export default function MapMenu({ isShow, setIsShow, getRouteData }) {
   // data
   const [city, setCity] = useState('');
   const [townAwait, setTownAwait] = useState([]);
@@ -368,7 +368,7 @@ export default function MapMenu({ isShow, setIsShow }) {
   }
   function selectRoute(data) {
     setIsShow(false);
-    console.log(data);
+    getRouteData(data);
   }
   function getRoute(city) {
     axios
@@ -391,7 +391,7 @@ export default function MapMenu({ isShow, setIsShow }) {
       className={`${
         isShow ? 'left-0' : '-left-full lg:-left-84'
       } map_menu flex flex-col shadow-md absolute bg-white z-20 w-full lg:w-84 h-full py-4 pl-3 pr-5`}>
-      <div onClick={() => setIsShow(false)} className='menu_hide absolute z-30 right-0 top-1/2 transform -translate-y-1/2 cursor-pointer select-none'>
+      <div onClick={() => setIsShow(false)} className='menu_hide absolute z-30 right-0 top-1/2 transform -translate-y-1/2 cursor-pointer select-none pl-3'>
         <p className='w-5 h-20 bg-primary-1 text-white text-sm flex items-center justify-center pl-3/4'>收合</p>
       </div>
       <div className='flex items-center justify-between mb-4'>
