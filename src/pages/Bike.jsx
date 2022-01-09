@@ -152,7 +152,6 @@ export default function Bike() {
     panTo({ lat: data.StationPosition.PositionLat, lng: data.StationPosition.PositionLon });
     setSelectedStaions(data);
     setTimeout(() => searchNearbyBike(), 0);
-    console.log(data);
   }
   // template
   if (loadError) return 'Error';

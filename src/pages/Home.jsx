@@ -43,7 +43,7 @@ export default function Home() {
       });
   }
   function getScenic() {
-    const keyword = '自然';
+    const keyword = '冬季';
     axios
       .get(
         `https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?$filter=contains(DescriptionDetail%2C%27${keyword}%27)&$orderby=UpdateTime&$top=30&$format=JSON`,
@@ -56,10 +56,10 @@ export default function Home() {
         let photosArr = shuffle(res.data.filter((item) => item.Picture.PictureUrl1));
         photosArr = photosArr.slice(0, 5).map((item) => {
           return {
-            id: item.ID,
+            id: item.ScenicSpotID,
             img: item.Picture.PictureUrl1,
-            discription: item.Name,
-            title: `${item.City || ''} ${item.City ? '|' : ''} ${item.Name}`,
+            discription: item.ScenicSpotName,
+            title: `${item.City || ''} ${item.City ? '|' : ''} ${item.ScenicSpotName}`,
           };
         });
         setScenic(resArr.slice(0, 4));

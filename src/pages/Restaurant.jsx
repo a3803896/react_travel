@@ -101,7 +101,7 @@ export default function Restaurant() {
     setOptionValue(keyObj.city || '全部縣市');
     axios
       .get(
-        `https://ptx.transportdata.tw/MOTC/v2/Tourism/Restaurant${city}?$filter=contains(Description%2C'${q}')%20or%20contains(Name%2C'${q}')%20or%20contains(Address%2C'${q}')&$orderby=Name&$top=240${
+        `https://ptx.transportdata.tw/MOTC/v2/Tourism/Restaurant${city}?$filter=contains(Description%2C'${q}')%20or%20contains(RestaurantName%2C'${q}')%20or%20contains(Address%2C'${q}')&$orderby=RestaurantName&$top=240${
           lat && long ? `&$spatialFilter=nearby(${lat}%2C%20${long}%2C%20${2000})` : ''
         }&$format=JSON`,
         {

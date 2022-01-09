@@ -71,7 +71,7 @@ export default function ActivityInfo() {
   }
   function getDetail() {
     axios
-      .get(`https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?$filter=ID%20eq%20'${id}'&$format=JSON`, {
+      .get(`https://ptx.transportdata.tw/MOTC/v2/Tourism/ScenicSpot?$filter=ScenicSpotID%20eq%20'${id}'&$format=JSON`, {
         headers: getAuthorizationHeader(),
       })
       .then((res) => {
@@ -108,9 +108,9 @@ export default function ActivityInfo() {
         let targetArr = res.data.filter((item) => item.ID !== id);
         targetArr = shuffle(targetArr).map((item) => {
           return {
-            id: item.ID,
+            id: item.ScenicSpotID,
             img: item.Picture.PictureUrl1 || noImg,
-            title: item.Name,
+            title: item.ScenicSpotName,
             location: item.City,
             type: '景點',
           };
@@ -135,10 +135,10 @@ export default function ActivityInfo() {
             {detail.City}
           </Link>
           <span className='text-second-100 mr-1 lg:mr-2'>/</span>
-          <span className='text-second-100'>{detail.Name}</span>
+          <span className='text-second-100'>{detail.ScenicSpotName}</span>
         </div>
         <MySwiper className='mb-4 lg:mb-7.5' photos={photo} />
-        <h2 className='text-2xl lg:text-4xl leading-9 lg:leading-13 font-light text-second-30 mb-2 lg:mb-3'>{detail.Name}</h2>
+        <h2 className='text-2xl lg:text-4xl leading-9 lg:leading-13 font-light text-second-30 mb-2 lg:mb-3'>{detail.ScenicSpotName}</h2>
         <div className='flex items-center mb-4 lg:mb-7.5'>
           {detail.Class1 && (
             <div className='border border-info rounded-5 select-none px-3 lg:px-4 py-1/2 mr-1.5 lg:mr-2 last:mr-0'>

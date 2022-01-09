@@ -9,9 +9,9 @@ export default function RecentAct({ className, dataArray }) {
   useEffect(() => {
     let infoArr = dataArray.map((item) => {
       return {
-        id: item.ID,
+        id: item.RestaurantID,
         img: item.Picture.PictureUrl1,
-        title: item.Name,
+        title: item.RestaurantName,
         location: item.City,
         type: '美食',
       };

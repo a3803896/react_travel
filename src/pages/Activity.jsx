@@ -109,7 +109,7 @@ export default function Activity() {
     setOptionValue(keyObj.city || '全部縣市');
     axios
       .get(
-        `https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity/${city}?$filter=(contains(Description,%27${q}%27)%20or%20contains(Name,%27${q}%27)%20or%20contains(Address,%27${q}%27))${
+        `https://ptx.transportdata.tw/MOTC/v2/Tourism/Activity/${city}?$filter=(contains(Description,%27${q}%27)%20or%20contains(ActivityName,%27${q}%27)%20or%20contains(Address,%27${q}%27))${
           date ? `%20and%20(date(StartTime)%20le%20${date}%20and%20date(EndTime)%20ge%20${date})` : ''
         }&$orderby=EndTime${lat && long ? `&$spatialFilter=nearby(${lat}%2C%20${long}%2C%20${2000})` : ''}&$format=JSON`,
         {

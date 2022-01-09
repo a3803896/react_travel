@@ -9,9 +9,9 @@ export default function RecentAct({ className, dataArray }) {
   useEffect(() => {
     let infoArr = dataArray.map((item) => {
       return {
-        id: item.ID,
+        id: item.ScenicSpotID,
         img: item.Picture.PictureUrl1,
-        title: item.Name,
+        title: item.ScenicSpotName,
         location: item.City,
         type: '景點',
       };

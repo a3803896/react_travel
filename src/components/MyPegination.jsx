@@ -13,12 +13,20 @@ function Items({ currentItems }) {
         currentItems.map((item) => (
           <div className='info_card w-full pb-2 lg:pb-0' key={item.ID}>
             <Link
-              to={`/${item.type === '景點' ? 'scenicinfo' : item.type === '活動' ? 'activityinfo' : 'restaurantinfo'}/${item.ID}`}
+              to={`/${
+                item.type === '景點'
+                  ? `scenicinfo/${item.ScenicSpotID}`
+                  : item.type === '活動'
+                  ? `activityinfo/${item.ActivityID}`
+                  : `restaurantinfo/${item.RestaurantID}`
+              }`}
               className='block w-full h-40 lg:h-50 rounded-5 overflow-hidden mb-1 lg:mb-2'>
               <img className='info_card_img w-full h-full object-cover object-center' src={item.Picture.PictureUrl1 || noImg} alt={item.Name} />
             </Link>
             <Link to={`/${item.type === '景點' ? 'scenicinfo' : item.type === '活動' ? 'activityinfo' : 'restaurantinfo'}/${item.ID}`} className='block mb-1'>
-              <h5 className='text-lg lg:text-5.5 lg:leading-8 font-bold text-second-47 ellipsis-1'>{item.Name}</h5>
+              <h5 className='text-lg lg:text-5.5 lg:leading-8 font-bold text-second-47 ellipsis-1'>
+                {item.type === '景點' ? item.ScenicSpotName : item.type === '活動' ? item.ActivityName : item.RestaurantName}
+              </h5>
             </Link>
             <div className='flex items-center'>
               <img src={spotGrey} alt='地圖圖標' className='mr-1' />
